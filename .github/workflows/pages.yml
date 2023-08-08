@@ -1,0 +1,45 @@
+name: Vue3-music CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Respository master branch
+        uses: actions/checkout@master
+
+      - name: Setup Node.js 
+        uses: actions/setup-node@master
+        with:
+          node-version: '16.18.1'
+
+      - name: Setup  Dependencies
+        run: |
+          npm install && npm run build 
+
+      - name: Setup Deploy Private Key
+        env:
+          DEPLOY_PRIVATE_KEY: ${{secrets.VUE3_MUSIC_KEY}}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$DEPLOY_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/know_hosts
+
+      - name: Setup Git Infomation
+        run: |
+          git config --global user.name "${{secrets.NAME}}"
+          git config --global user.email "${{secrets.MAIL}}"
+
+      - name: Deploy pages
+        run: |
+          cd /home/runner/work/vue3-music/vue3-music/dist
+          git init && git add . && git commit -m 'commit' && git branch gh-pages
+          git remote add origin git@github.com:yxt66/blog-comments.git
+          git push -u origin gh-pages
+# mkdir public/blog && cp -r public/js public/blog 
+# hexo deploy

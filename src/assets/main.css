@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+    /* 取消手机点击后的蓝色边框 */
+    -webkit-tap-highlight-color: rgba(255,255,255,0); 
+}
