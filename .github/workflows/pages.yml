@@ -40,5 +40,5 @@ jobs:
           cd /home/runner/work/vue3-music/vue3-music/dist
           git init && git add . && git commit -m 'commit' && git branch gh-pages
           git remote add origin git@github.com:yxt66/vue3-music.git
-          git push -u origin gh-pages
-# git push --set-upstream origin main
+          git push --set-upstream origin main
+  # git push -u origin gh-pages
