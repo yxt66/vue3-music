@@ -41,5 +41,4 @@ jobs:
           git init && git add . && git commit -m 'commit' && git branch gh-pages
           git remote add origin git@github.com:yxt66/vue3-music.git
           git push -u origin gh-pages
-# mkdir public/blog && cp -r public/js public/blog 
-# hexo deploy
+# git push --set-upstream origin main
