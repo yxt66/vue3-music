@@ -31,9 +31,9 @@ const showMenu = ref(false);
     <div class="w-full flex items-center justify-end gap-3">
       <div class="flex items-center">
         <button
-          class="flex items-center bg-[#F02C56] text-white border rounded-md px-2 py-[5px]"
+          class="flex items-center bg-gradient-to-r from-purple-500 to-pink-500 text-white border rounded-md px-2 py-[5px]"
         >
-          <span class="mx-4 font-medium text-[12px]">Log in</span>
+          <span class="mx-4 font-medium text-[12px]">登录</span>
         </button>
       </div>
 
@@ -48,11 +48,11 @@ const showMenu = ref(false);
           >
             <button class="flex items-center hover:bg-gray-100 w-full p-2">
               <ion-icon name="person-outline"></ion-icon>
-              <span class="pl-2 font-semibold text-xs">Profile</span>
+              <span class="pl-2 font-semibold text-xs">个人中心</span>
             </button>
             <button class="w-full flex items-center hover:bg-gray-100 p-2 ">
               <ion-icon name="log-out-outline"></ion-icon>
-              <span class="pl-2 font-semibold text-xs">Log out</span>
+              <span class="pl-2 font-semibold text-xs">退出登录</span>
             </button>
           </div>
         </div>

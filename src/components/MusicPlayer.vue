@@ -1,31 +1,80 @@
 <template>
   <div
     v-if="!showPlayer"
-    class="z-40 absolute top-0 left-0 w-screen h-screen bg-white"
+    class="md:w-full md:h-full z-40 absolute top-0 left-0 w-screen h-screen bg-white"
   >
     <!-- PalyerNav -->
-    <div @click="showPlayer = !showPlayer" class="my-4">
+    <div @click="showPlayer = !showPlayer" class="m-4">
       <ion-icon name="chevron-down-outline"> </ion-icon>
     </div>
     <!-- ArtistImg --><!-- lyrics -->
-    <div class="overflow-y-auto h-2/3 bg-pink-700">
-      <img
-        src="/public/artist/img/2.jpeg"
-        class="mx-auto w-[90%] h-[50%] rounded-md object-cover"
-      />
-      <img
-        src="/public/artist/img/2.jpeg"
-        class="mx-auto w-[90%] h-[50%] rounded-md object-cover"
-      />
-      <img
-        src="/public/artist/img/2.jpeg"
-        class="mx-auto w-[90%] h-[50%] rounded-md object-cover"
-      />
-      <img
-        src="/public/artist/img/2.jpeg"
-        class="mx-auto w-[90%] h-[50%] rounded-md object-cover"
-      />
+
+    <div class="overflow-y-auto md:overflow-y-hidden h-2/3 flex flex-col md:flex-row ">
+      <!-- ArtistImg -->
+
+      <div class="md:w-[50%] md:h-full 
+      w-full h-[50%] p-5
+      ">
+        <img
+          src="/public/artist/img/2.jpeg"
+          width="100"
+          class=" md:m-10 md:w-[80%]  md:h-[80%] 
+          w-[80%]  h-full mx-auto
+          rounded-lg object-cover
+          "
+        />
+      </div>
+
+      <!-- lyrics -->
+      <div class="md:w-[50%] md:h-full   md:overflow-y-auto">
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+        <div>枫-周杰伦</div>
+
+      </div>
+
     </div>
+
+
     <!-- 进度条 -->
     <div>进度条</div>
     <!-- 播放组件 -->
@@ -42,7 +91,7 @@
         顺序
         <ion-icon name="repeat-outline"></ion-icon>
       </button> -->
-      <button class="text-[#18181b] text-2xl"  >
+      <button class="text-[#18181b] text-2xl">
         <!-- 左 -->
         <ion-icon name="chevron-back-outline"></ion-icon>
       </button>
@@ -50,7 +99,7 @@
         停止
         <ion-icon name="pause-outline"></ion-icon>
       </button> -->
-      <button class=" w-16 h-16 text-5xl text-[#18181b]">
+      <button class="w-16 h-16 text-5xl text-[#18181b]">
         <!-- 播放 -->
         <ion-icon name="play-outline"></ion-icon>
       </button>
@@ -58,13 +107,13 @@
         <!-- 右 -->
         <ion-icon name="chevron-forward-outline"></ion-icon>
       </button>
-      <!-- <button>
-        音量
+      <button class="hidden md:block text-xl text-gray-500">
+        <!-- 音量 -->
         <ion-icon name="volume-low-outline"></ion-icon>
-      </button> -->
-      <button class="text-xl text-gray-500 ">
+      </button>
+      <button class="text-xl text-gray-500">
         <!-- 菜单 -->
-        <ion-icon name="reorder-three-outline"></ion-icon>
+        <ion-icon name="musical-notes-outline"></ion-icon>
       </button>
     </div>
   </div>
