@@ -20,6 +20,15 @@ jobs:
       - name: Setup  Dependencies
         run: |
           npm install && npm run build 
+          
+      - name: Cache node modules
+        uses: actions/cache@v1
+        id: cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{runner.os}}-node-
 
       - name: Setup Deploy Private Key
         env:
