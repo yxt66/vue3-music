@@ -2,7 +2,7 @@
 <template>
     <div
       id="MDSideNav"
-      class="absolute bottom-0 left-0  w-full rounded-xl  bg-[#ffffff] "
+      class="absolute md:hidden bottom-0 left-0  w-full rounded-xl  bg-[#ffffff] "
     >
       <div class="flex justify-between mx-auto p-2">
         <MDMenuItem  iconString="首页" name="Home" pageUrl="/home" />

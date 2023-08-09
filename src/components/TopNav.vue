@@ -10,7 +10,7 @@ const showMenu = ref(false);
     class="z-30 fixed border-b w-full md:w-[80%] h-[55px] max-w-[1100px] rounded-t-lg p-6 flex items-center"
   >
     <!-- logo -->
-    <div class="w-full flex items-center gap-3">
+    <div class="w-full flex items-center gap-3" @click="$router.push('/home')">
       <img width="25" src="../assets/vite.svg" alt="" />
       <span class="hidden md:inline-block text-[14px]">Tao Music</span>
     </div>
@@ -44,7 +44,7 @@ const showMenu = ref(false);
           </button>
           <div
             v-if="showMenu"
-            class="absolute w-40 top-[47px] right-2 shadow-xl border rounded-lg p-3 bg-white"
+            class="absolute w-32 top-[40px] -right-6 shadow-xl border rounded-lg p-3 bg-white"
           >
             <button class="flex items-center hover:bg-gray-100 w-full p-2">
               <ion-icon name="person-outline"></ion-icon>
