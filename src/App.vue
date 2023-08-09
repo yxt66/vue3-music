@@ -8,7 +8,8 @@ import Test from "./components/Test.vue";
 
 <template >
   <div class="flex items-center justify-center h-screen w-full">
-    <div class=" relative flex w-[80%] max-w-[1100px] h-[80%] rounded-xl shadow-md">
+    <div class="relative flex w-screen h-screen md:w-[80%] md:h-[80%] md:rounded-xl md:shadow-md max-w-[1100px]  ">
+
       <!-- TopNav -->
       <TopNav />
       <!-- SideBar -->

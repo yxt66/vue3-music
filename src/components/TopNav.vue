@@ -7,7 +7,7 @@ const showMenu = ref(false);
   <!-- nav -->
   <div
     id="TopNav"
-    class="z-30 fixed border-b w-[80%] h-[55px] max-w-[1100px] rounded-t-lg p-6 flex items-center"
+    class="z-30 fixed border-b w-full md:w-[80%] h-[55px] max-w-[1100px] rounded-t-lg p-6 flex items-center"
   >
     <!-- logo -->
     <div class="w-full flex items-center gap-3">
