@@ -1,9 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import SongList from '../views/SongList.vue'
 import History from '../views/History.vue'
 import Favourite from '../views/Favourite.vue'
 const router = createRouter({
+  // history: createWebHashHistory(import.meta.env.BASE_URL), #
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
