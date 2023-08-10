@@ -21,7 +21,7 @@ const playMusic = (songName) =>{
   if(audio){
     audio.src = ''
   }
-  audio = new Audio(`/vue3-music/public/artist/songs/${songName}`);
+  audio = new Audio(`vue3-music/artist/songs/${songName}`);
   audio.play()
 }
 </script>
