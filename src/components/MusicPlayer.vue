@@ -25,20 +25,45 @@
 
       <!-- lyrics -->
       <div class="md:w-[50%] md:h-full md:overflow-y-auto text-center">
-        <div v-for="(lyr,index) in lyric" :key="index">{{ lyr.span }}</div>
-
+        <div v-for="(lyr, index) in lyric" :key="index">{{ lyr.span }}</div>
       </div>
     </div>
 
     <!-- 进度条 -->
-    <div>进度条</div>
+    <div class="px-3">
+      <div class="relative">
+        <input
+        id="inputRange"
+        class="z-50 w-full cursor-pointer opacity-0"
+        type="range"
+        name=""
+        min="0"
+        max="100"
+        value="0"
+        @change="modifyInputRange($event)"
+      />
+        <div id="progressBar" class="   h-0.5  bg-[#a78bfa] absolute top-2 left-0">
+          <div id="dot" class="hi w-2 h-2 rounded-full bg-[#a78bfa] absolute -top-1 right-0 cursor-pointer "></div>
+        </div>
+        <!-- 
+                  @touchstart="test1($event)"
+        @touchsend="test2($event)"
+        @mousemove="modifyInputRange($event)"
+        @mousedown="modifyInputRange($event)" 
+                @change="modifyInputRange($event)"
+         -->
+      </div>
+      <div class="flex justify-between text-xs text-gray-500">
+        <div>00:00</div>
+        <div>01:00</div>
+      </div>
+    </div>
     <!-- 播放组件 -->
     <div class="flex w-full h-32 items-center justify-between gap-3 px-6">
-
       <!-- md:屏幕大于768px的播放图片 -->
-      <div>
-        <img src="/public/artist/img/1.webp" alt="">
-      </div>
+      <!-- <div>
+        <img src="/public/artist/img/1.webp" alt="" class="w-14 h-14 rounded-lg">
+      </div> -->
 
       <button class="text-xl text-gray-500">
         <!-- 随机 -->
@@ -81,7 +106,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { nextTick, ref } from "vue";
 
 const showPlayer = ref(false);
 const lyric = [
@@ -150,4 +175,11 @@ const lyric = [
   { time: "04:18.64", span: "让爱渗透了地面" },
   { time: "04:22.19", span: "我要的只是你在我身边" },
 ];
+let clientX = null;function modifyInputRange($event) {
+
+  console.log($event.clientX,$event.clientY)
+  console.log(document.getElementById('inputRange').value);
+  document.getElementById('progressBar').style.width = `${document.getElementById('inputRange').value}%`
+}
+
 </script>
