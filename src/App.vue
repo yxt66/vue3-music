@@ -20,7 +20,7 @@ import MusicPlayer from "./components/MusicPlayer.vue";
       />
       <!-- 手机屏幕导航栏 -->
       <MDSideBar />
-      <MusicPlayer class="hidden"></MusicPlayer>
+      <MusicPlayer ></MusicPlayer>
     </div>
     
   </div>

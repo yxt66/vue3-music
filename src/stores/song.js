@@ -8,5 +8,5 @@ export const useCounterStore = defineStore('song', {
   actions:{
 
   },
-  persist:true
+  // persist:true
 })
