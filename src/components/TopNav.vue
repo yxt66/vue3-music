@@ -40,7 +40,7 @@ const showMenu = ref(false);
       <div class="flex items-center">
         <div class="relative">
           <button class="mt-1" @click="showMenu = !showMenu">
-            <img class="rounded-full" src="/favicon.ico" width="27" alt="" />
+            <img class="rounded-full" src="/public/artist/img/1.webp" width="27" alt="" />
           </button>
           <div
             v-if="showMenu"

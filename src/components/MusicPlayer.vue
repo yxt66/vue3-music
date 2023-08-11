@@ -2,11 +2,12 @@
 <template>
   <div
     v-if="!showPlayer"
-    class="md:w-full md:h-full z-40 absolute top-0 left-0 w-screen h-screen bg-white"
+    class="md:w-full md:h-full z-50 absolute top-0 left-0 w-screen h-screen bg-white"
   >
     <!-- PalyerDownIcon -->
-    <div @click="showPlayer = !showPlayer" class="m-4">
-      <ion-icon name="chevron-down-outline"> </ion-icon>
+    <div class="m-4">
+      <ion-icon name="chevron-down-outline" @click="showPlayer = !showPlayer">
+      </ion-icon>
     </div>
     <!-- ArtistImg -- and !-- lyrics -->
 
@@ -33,17 +34,24 @@
     <div class="px-3">
       <div class="relative">
         <input
-        id="inputRange"
-        class="z-50 w-full cursor-pointer opacity-0"
-        type="range"
-        name=""
-        min="0"
-        max="100"
-        value="0"
-        @change="modifyInputRange($event)"
-      />
-        <div id="progressBar" class="   h-0.5  bg-[#a78bfa] absolute top-2 left-0">
-          <div id="dot" class="hi w-2 h-2 rounded-full bg-[#a78bfa] absolute -top-1 right-0 cursor-pointer "></div>
+          id="inputRange"
+          class="z-50 w-full cursor-pointer opacity-0"
+          type="range"
+          name=""
+          min="0"
+          max="100"
+          value="0"
+          @change="modifyInputRange($event)"
+          @mousedown="mouseDown($event)"
+        />
+        <div
+          id="progressBar"
+          class="h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 absolute top-2 left-0"
+        >
+          <div
+            id="dot"
+            class="hi w-2 h-2 rounded-full bg-pink-500 absolute -top-1 right-0 cursor-pointer"
+          ></div>
         </div>
         <!-- 
                   @touchstart="test1($event)"
@@ -59,7 +67,7 @@
       </div>
     </div>
     <!-- 播放组件 -->
-    <div class="flex w-full h-32 items-center justify-between gap-3 px-6">
+    <div class="flex w-full h-36 items-center justify-between gap-3 px-6">
       <!-- md:屏幕大于768px的播放图片 -->
       <!-- <div>
         <img src="/public/artist/img/1.webp" alt="" class="w-14 h-14 rounded-lg">
@@ -175,11 +183,27 @@ const lyric = [
   { time: "04:18.64", span: "让爱渗透了地面" },
   { time: "04:22.19", span: "我要的只是你在我身边" },
 ];
-let clientX = null;function modifyInputRange($event) {
 
-  console.log($event.clientX,$event.clientY)
-  console.log(document.getElementById('inputRange').value);
-  document.getElementById('progressBar').style.width = `${document.getElementById('inputRange').value}%`
+function modifyInputRange($event) {
+  window.addEventListener('mousedown',mouseDown);
+  window.addEventListener('mouseup',mouseUp)
+  // console.log(document.getElementById("inputRange").value);
+  document.getElementById("progressBar").style.width = `${
+    document.getElementById("inputRange").value
+  }%`;
 }
-
+let flag = false
+function mouseDown($event){
+  flag = true
+  console.log($event);
+  window.addEventListener('mousemove',mouseMove)
+}
+function mouseMove($event){
+  if(flag){
+    document.getElementById("progressBar").style.width = ($event.clientX-92) +'px'  
+  }
+}
+function mouseUp($event){
+  flag = false
+}
 </script>
