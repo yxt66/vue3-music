@@ -61,7 +61,7 @@ const playMusic = (songName) =>{
     </div>
     <div v-for="(song, index) in songs" :key="index" 
     class="
-    flex items-center gap-2 text-sm md:text-base py-2 cursor-pointer
+    flex items-center gap-2 text-sm  py-2 cursor-pointer
     " 
     @click="playMusic(song.name)">
       <ion-icon name="heart-outline" ></ion-icon>

@@ -1,12 +1,11 @@
 
 <template>
   <div
-    v-if="!showPlayer"
     class="md:w-full md:h-full z-50 absolute top-0 left-0 w-screen h-screen bg-white"
   >
     <!-- PalyerDownIcon -->
-    <div class="m-4">
-      <ion-icon name="chevron-down-outline" @click="showPlayer = !showPlayer">
+    <div class="m-4 ">
+      <ion-icon name="chevron-down-outline" @click="showPlayer" class="hover:text-pink-400">
       </ion-icon>
     </div>
     <!-- ArtistImg -- and !-- lyrics -->
@@ -30,6 +29,8 @@
       </div>
     </div>
 
+
+    <!--  -->
     <!-- 进度条 -->
     <div class="px-3">
       <div class="relative">
@@ -50,7 +51,7 @@
         >
           <div
             id="dot"
-            class="hi w-2 h-2 rounded-full bg-pink-500 absolute -top-1 right-0 cursor-pointer"
+            class="w-2 h-2 rounded-full bg-pink-500 absolute -top-1 right-0 cursor-pointer"
           ></div>
         </div>
         <!-- 
@@ -68,10 +69,6 @@
     </div>
     <!-- 播放组件 -->
     <div class="flex w-full h-36 items-center justify-between gap-3 px-6">
-      <!-- md:屏幕大于768px的播放图片 -->
-      <!-- <div>
-        <img src="/public/artist/img/1.webp" alt="" class="w-14 h-14 rounded-lg">
-      </div> -->
 
       <button class="text-xl text-gray-500">
         <!-- 随机 -->
@@ -107,16 +104,21 @@
       </button>
       <button class="text-xl text-gray-500">
         <!-- 菜单 -->
-        <ion-icon name="musical-notes-outline"></ion-icon>
+        <ion-icon name="menu-outline"></ion-icon>
       </button>
     </div>
+    <!-- --- -->
+
+    
   </div>
 </template>
 
 <script setup>
 import { nextTick, ref } from "vue";
-
-const showPlayer = ref(false);
+const emit = defineEmits(['showMusicPlayer'])
+function showPlayer(){
+  emit('showMusicPlayer')
+}
 const lyric = [
   { time: "00:00.00", span: "枫 - 周杰伦 (Jay Chou)" },
   { time: "00:03.79", span: "词：弹头（宋健彰）" },

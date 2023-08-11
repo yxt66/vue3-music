@@ -1,15 +1,21 @@
 <script setup>
+import { ref } from "vue";
 import { RouterView } from "vue-router";
 import TopNav from "./components/TopNav.vue";
 import SideBar from "./components/SideBar.vue";
 import MDSideBar from "./components/MDSideBar.vue";
 import Test from "./components/Test.vue";
 import MusicPlayer from "./components/MusicPlayer.vue";
+import MiniMusicPlayer from "./components/MiniMusicPlayer.vue";
+let show = ref(false);
+
 </script>
 
 <template >
   <div class="flex items-center justify-center h-screen w-full">
-    <div class="relative flex w-screen h-screen md:w-[80%] md:h-[80%] md:rounded-xl md:shadow-md max-w-[1100px] ">
+    <div
+      class="relative flex w-screen h-screen md:w-[80%] md:h-[80%] md:rounded-xl md:shadow-md max-w-[1100px]"
+    >
       <!-- TopNav -->
       <TopNav />
       <!-- SideBar -->
@@ -20,9 +26,11 @@ import MusicPlayer from "./components/MusicPlayer.vue";
       />
       <!-- 手机屏幕导航栏 -->
       <MDSideBar />
-      <MusicPlayer ></MusicPlayer>
+      <!-- 播放器加歌词组件 -->
+      <MusicPlayer v-show="show" @showMusicPlayer="show = false"></MusicPlayer>
+      <!-- 下方的播放器 -->
+      <MiniMusicPlayer v-show="!show" @showMusicPlayer="show = !show"></MiniMusicPlayer>
     </div>
-    
   </div>
 </template>
 
