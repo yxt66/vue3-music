@@ -5,7 +5,7 @@
   >
     <!-- PalyerDownIcon -->
     <div class="m-4 ">
-      <ion-icon name="chevron-down-outline" @click="showPlayer" class="hover:text-pink-400">
+      <ion-icon name="chevron-down-outline" @click="showPlayer" class="hover:text-[#F02C56]">
       </ion-icon>
     </div>
     <!-- ArtistImg -- and !-- lyrics -->
@@ -86,11 +86,11 @@
         <!-- 左 -->
         <ion-icon name="chevron-back-outline"></ion-icon>
       </button>
-      <!-- <button>
-        停止
+      <button v-if="props.musicPlaying" class="w-16 h-16 text-4xl text-[#18181b]"
+>
         <ion-icon name="pause-outline"></ion-icon>
-      </button> -->
-      <button class="w-16 h-16 text-5xl text-[#18181b]">
+      </button>
+      <button v-else class="w-16 h-16 text-4xl text-[#18181b]">
         <!-- 播放 -->
         <ion-icon name="play-outline"></ion-icon>
       </button>
@@ -115,7 +115,13 @@
 
 <script setup>
 import { nextTick, ref } from "vue";
-const emit = defineEmits(['showMusicPlayer'])
+
+const props = defineProps({
+  musicPlaying:Boolean
+});
+
+const emit = defineEmits(['showMusicPlayer']);
+
 function showPlayer(){
   emit('showMusicPlayer')
 }

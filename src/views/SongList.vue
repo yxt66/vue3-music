@@ -16,13 +16,20 @@ let songs = ref([
   { name: "飞花(Live) - 李克勤,梁玉莹.mp3" },
 ]);
 let audio = ref(null);
-const playMusic = (songName) =>{
-  console.log(audio)
+let selectSongIndex = ref(-1);
+const emits = defineEmits(['musicPlaying'])
+
+const playMusic = (song,index) =>{
+  
+  selectSongIndex.value = index;
   if(audio){
     audio.src = ''
   }
-  audio = new Audio(`/vue3-music/artist/songs/${songName}`);
-  audio.play()
+  audio = new Audio(`/vue3-music/artist/songs/${song.name}`);
+
+  emits('musicPlaying',audio); //通知组件开始播放音乐
+
+
 }
 </script>
 <template>
@@ -60,10 +67,11 @@ const playMusic = (songName) =>{
       <div>专辑</div>
     </div>
     <div v-for="(song, index) in songs" :key="index" 
+    :class="index === selectSongIndex ? 'text-[#F02C56]':''"
     class="
     flex items-center gap-2 text-sm  py-2 cursor-pointer
     " 
-    @click="playMusic(song.name)">
+    @click="playMusic(song,index)">
       <ion-icon name="heart-outline" ></ion-icon>
       {{ song.name.replace(".mp3", "") }}
     </div>

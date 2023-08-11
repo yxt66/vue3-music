@@ -1,14 +1,27 @@
 <script setup>
-const emit = defineEmits(["showMusicPlayer"]);
-const showMusicPlayer = () => {
-  emit('showMusicPlayer');
-}
+import { toRefs } from "vue";
 
+const props = defineProps({
+  musicPlaying: Boolean,
+});
+
+const { musicPlaying } = toRefs(props); //props变则musicPlaying变
+
+const emit = defineEmits(["showMusicPlayer","musicPause",'msPlay']);
+
+const showMusicPlayer = () => {
+  emit("showMusicPlayer");
+};
+const musicPause = () => {
+  emit('musicPause')
+}
+const msPlay = () => {
+  emit('msPlay')
+}
 </script>
 <template>
   <!--  -->
   <div
-
     id="MiniMusicPlayer"
     class="z-50 absolute right-0 bottom-[68px] md:bottom-0 md:right-0 md:w-[80%] w-full p-2 bg-white"
   >
@@ -80,11 +93,18 @@ const showMusicPlayer = () => {
         <!-- 左 -->
         <ion-icon name="chevron-back-outline"></ion-icon>
       </button>
-      <!-- <button>
-        停止
+      <button
+        v-if="musicPlaying"
+        class="w-16 h-16 text-3xl text-[#18181b]"
+        @click="musicPause"
+      >
         <ion-icon name="pause-outline"></ion-icon>
-      </button> -->
-      <button class="w-16 h-16 text-3xl text-[#18181b]">
+      </button>
+      <button
+        v-else
+        class="w-16 h-16 text-3xl text-[#18181b]"
+        @click="msPlay"
+      >
         <!-- 播放 -->
         <ion-icon name="play-outline"></ion-icon>
       </button>
