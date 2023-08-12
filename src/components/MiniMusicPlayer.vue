@@ -1,5 +1,5 @@
 <script setup>
-import { toRefs } from "vue";
+import { toRefs ,ref} from "vue";
 
 const props = defineProps({
   musicPlaying: Boolean,
@@ -7,17 +7,24 @@ const props = defineProps({
 
 const { musicPlaying } = toRefs(props); //props变则musicPlaying变
 
-const emit = defineEmits(["showMusicPlayer","musicPause",'msPlay']);
+const emit = defineEmits(["showMusicPlayer", "musicPause", "msPlay"]);
 
 const showMusicPlayer = () => {
   emit("showMusicPlayer");
 };
 const musicPause = () => {
-  emit('musicPause')
-}
+  emit("musicPause");
+};
 const msPlay = () => {
-  emit('msPlay')
+  emit("msPlay");
+};
+
+const changeSlider = () =>{
+  const Slider = document.querySelector('#Slider');
+  const SliderValueBox = document.querySelector('#SliderValueBox');
+  SliderValueBox.style.width = `${Slider.value}%`
 }
+let showSlider = ref(false)
 </script>
 <template>
   <!--  -->
@@ -27,7 +34,7 @@ const msPlay = () => {
   >
     <!-- 进度条 -->
     <div class="mb-1">
-      <div class="relative">
+      <div class="relative" >
         <input
           id="inputRange"
           class="z-50 w-full cursor-pointer opacity-0"
@@ -77,9 +84,9 @@ const msPlay = () => {
         </div>
       </div>
 
-      <button class="text-lg text-gray-500">
+      <button class="w-5 h-5 text-lg text-gray-500">
         <!-- 随机 -->
-        <ion-icon name="shuffle-outline"></ion-icon>
+        <ion-icon name="shuffle-outline" class="w-full h-full"></ion-icon>
       </button>
       <!-- <button>
         单曲
@@ -89,39 +96,99 @@ const msPlay = () => {
         顺序
         <ion-icon name="repeat-outline"></ion-icon>
       </button> -->
-      <button class="text-[#18181b] text-xl">
+      <button class="w-5 h-5 text-[#18181b] text-xl">
         <!-- 左 -->
-        <ion-icon name="chevron-back-outline"></ion-icon>
+        <ion-icon name="chevron-back-outline" class="w-full h-full"></ion-icon>
       </button>
       <button
         v-if="musicPlaying"
-        class="w-16 h-16 text-3xl text-[#18181b]"
+        class="w-10 h-10 text-xl text-[#18181b]"
         @click="musicPause"
       >
-        <ion-icon name="pause-outline"></ion-icon>
+        <ion-icon name="pause-outline" class="w-full h-full"></ion-icon>
       </button>
-      <button
-        v-else
-        class="w-16 h-16 text-3xl text-[#18181b]"
-        @click="msPlay"
-      >
+      <button v-else class="w-10 h-10 text-xl text-[#18181b]" @click="msPlay">
         <!-- 播放 -->
-        <ion-icon name="play-outline"></ion-icon>
+        <ion-icon name="play-outline" class="w-full h-full"></ion-icon>
       </button>
-      <button class="text-xl text-[#18181b]">
+      <button class="w-5 h-5 text-xl text-[#18181b]">
         <!-- 右 -->
-        <ion-icon name="chevron-forward-outline"></ion-icon>
+        <ion-icon
+          name="chevron-forward-outline"
+          class="w-full h-full"
+        ></ion-icon>
       </button>
-      <button class="hidden md:block text-lg text-gray-500">
-        <!-- 音量 -->
+      <!-- <button class="hidden md:block text-lg text-gray-500">
+        音量 
         <ion-icon name="volume-low-outline"></ion-icon>
-      </button>
-      <button class="text-lg text-gray-500">
+      </button> -->
+
+      <!-- 音量组件 -->
+      <div class="w-5 h-5 relative">
+        <div
+          v-if="showSlider"
+          class=" z-50 absolute h-[4px] hover:h-[8px] hover:block transition-all w-28 -top-4 left-3 origin-bottom-left -rotate-90 rounded-lg bg-gray-200"
+        >
+          <div
+            id="SliderValueBox"
+            class="w-[20%] h-full bg-gradient-to-r from-purple-300 to-pink-400 rounded-lg "
+          ></div>
+          <input
+            @blur="showSlider = false"
+            id="Slider"
+            type="range"
+            name=""
+            class=" absolute top-0 left-0 appearance-none w-full h-full  bg-transparent rounded-lg"
+            min="0"
+            max="100"
+            value="20"
+            @change="changeSlider"
+            @mousemove="changeSlider"
+          />
+        </div>
+        <svg
+          
+          @click="showSlider = !showSlider"
+          class="w-full h-full "
+          xmlns="http://www.w3.org/2000/svg"
+          version="1.1"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="512"
+          height="512"
+          x="0"
+          y="0"
+          viewBox="0 0 24 24"
+          style="enable-background: new 0 0 512 512"
+          xml:space="preserve"
+        >
+          <g>
+            <path
+              d="M18.36 19.36a1 1 0 0 1-.705-1.71C19.167 16.148 20 14.142 20 12s-.833-4.148-2.345-5.65a1 1 0 1 1 1.41-1.419C20.958 6.812 22 9.322 22 12s-1.042 5.188-2.935 7.069a.997.997 0 0 1-.705.291z"
+              fill="currentColor"
+              data-original="#000000"
+            ></path>
+            <path
+              d="M15.53 16.53a.999.999 0 0 1-.703-1.711C15.572 14.082 16 13.054 16 12s-.428-2.082-1.173-2.819a1 1 0 1 1 1.406-1.422A6 6 0 0 1 18 12a6 6 0 0 1-1.767 4.241.996.996 0 0 1-.703.289zM12 22a1 1 0 0 1-.707-.293L6.586 17H4c-1.103 0-2-.897-2-2V9c0-1.103.897-2 2-2h2.586l4.707-4.707A.998.998 0 0 1 13 3v18a1 1 0 0 1-1 1z"
+              fill="currentColor"
+              data-original="#000000"
+            ></path>
+          </g>
+        </svg>
+      </div>
+      <button class="w-5 h-5 text-lg text-gray-500">
         <!-- 菜单 -->
-        <ion-icon name="menu-outline"></ion-icon>
+        <ion-icon name="menu-outline" class="w-full h-full"></ion-icon>
       </button>
     </div>
   </div>
 
   <!-- --- -->
 </template>
+<style scoped>
+#Slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 0;
+  height: 0;
+  /* cursor: pointer; */
+}
+</style>

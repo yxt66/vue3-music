@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.js"></script>
+    <style type="text/css">
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      .slider-panel {
+        background-color: #fcc688;
+        height: 450px;
+        width: 600px;
+        padding: 20px;
+        margin: auto;
+      }
+
+      .slider-panel .slider-box {
+        /* background-color: darkgray; */
+        margin-top: 40px;
+        display: inline-block;
+        width: 305px;
+        height: 6px;
+        position: relative;
+        border-radius: 5px;
+      }
+
+      /* 滑条划过的宽度，默认值为0 */
+      .slider-panel .slider-box .slider-value {
+        background-image: linear-gradient(90deg, #82E0F7 0%, #009DDC 52%);
+        height: 6px;
+        width: 6px;
+        border-radius: 5px;
+      }
+
+      /* 滑条的样式。默认透明 */
+      .slider-panel input {
+        position: absolute;
+        left: 0;
+        top: 0;
+        -webkit-appearance: none;
+        -ms-appearance: none;
+        background: transparent;
+        width: 305px;
+        height: 2px;
+        outline: none;
+      }
+
+      /* 圆形滑块的样式 */
+      .slider-panel input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 12px;
+        width: 12px;
+        /* background-color: #eaecee; */
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 2px 4px 0 #212B35;
+        background: #4BBEEC;
+        border: 2px solid #FFFFFF;
+      }
+</style>
+    <script type="text/javascript">
+      $(function() {
+        //绑定鼠标滑动事件
+        $(' .slider-panel input').on('mousemove touchmove touchend click', moveSlider)
+
+        function moveSlider() {
+          // 获取当前滑条的动态值
+          let sliderValue = parseInt($(this).val());
+          // 将滑条的值赋值给滑条划过后p标签的宽度
+          $('.slider-value').css('width', sliderValue + '%');
+          // 显示当前滑条的动态值
+          $('.slider-percentage').text(sliderValue);
+        }
+
+      })
+</script>
+    <title>彩色渐变滑动条</title>
+  </head>
+  <body>
+    <div class="slider-panel">
+      <!--slider-box表示整个滑条的颜色  -->
+      <div class="slider-box">
+        <!--slider-value表示滑条划过后的部分用一个颜色显示覆盖slider-box的颜色达到进度作用  -->
+        <p class="slider-value"></p>
+        <!-- 滑条的背景颜色透明只有-->
+        <input type="range" min="0" step="1" max="100" value="0">
+      </div>
+      <p><span class='slider-percentage'>0</span>%</p>
+    </div>
+    </div>
+  </body>
+</html>

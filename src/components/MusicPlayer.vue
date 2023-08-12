@@ -1,7 +1,7 @@
 
 <template>
   <div
-    class="md:w-full md:h-full z-50 absolute top-0 left-0 w-screen h-screen bg-white"
+    class=" md:w-full md:h-full z-50 absolute top-0 left-0 w-screen h-screen bg-white"
   >
     <!-- PalyerDownIcon -->
     <div class="m-4 ">
@@ -32,7 +32,7 @@
 
     <!--  -->
     <!-- 进度条 -->
-    <div class="px-3">
+    <div class="backdrop-blur	 px-3">
       <div class="relative">
         <input
           id="inputRange"
@@ -47,7 +47,7 @@
         />
         <div
           id="progressBar"
-          class="h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 absolute top-2 left-0"
+          class=" h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 absolute top-2 left-0"
         >
           <div
             id="dot"
@@ -68,7 +68,7 @@
       </div>
     </div>
     <!-- 播放组件 -->
-    <div class="flex w-full h-36 items-center justify-between gap-3 px-6">
+    <div class=" bg-gradient-to-b from-white to-[#ddd6fe] flex w-full h-36 items-center justify-between gap-3 px-6">
 
       <button class="text-xl text-gray-500">
         <!-- 随机 -->
@@ -86,11 +86,11 @@
         <!-- 左 -->
         <ion-icon name="chevron-back-outline"></ion-icon>
       </button>
-      <button v-if="props.musicPlaying" class="w-16 h-16 text-4xl text-[#18181b]"
+      <button v-if="props.musicPlaying" class="w-16 h-16 text-4xl text-[#18181b] "
 >
         <ion-icon name="pause-outline"></ion-icon>
       </button>
-      <button v-else class="w-16 h-16 text-4xl text-[#18181b]">
+      <button v-else class=" w-16 h-16 text-4xl text-[#18181b] ">
         <!-- 播放 -->
         <ion-icon name="play-outline"></ion-icon>
       </button>
@@ -98,10 +98,11 @@
         <!-- 右 -->
         <ion-icon name="chevron-forward-outline"></ion-icon>
       </button>
+      <!-- 音量
       <button class="hidden md:block text-xl text-gray-500">
-        <!-- 音量 -->
         <ion-icon name="volume-low-outline"></ion-icon>
-      </button>
+      </button> 
+      -->
       <button class="text-xl text-gray-500">
         <!-- 菜单 -->
         <ion-icon name="menu-outline"></ion-icon>

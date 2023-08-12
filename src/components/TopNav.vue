@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 
-const showMenu = ref(false);
+let showMenu = ref(false);
 </script>
 <template>
   <!-- nav -->
@@ -37,14 +37,15 @@ const showMenu = ref(false);
         </button>
       </div>
 
-      <div class="flex items-center">
+      <div class="flex items-center" >
         <div class="relative">
           <button class="mt-1" @click="showMenu = !showMenu">
             <img class="rounded-full" src="/public/artist/img/1.webp" width="27" alt="" />
           </button>
           <div
+            @mouseleave="showMenu = !showMenu"
             v-if="showMenu"
-            class="absolute w-32 top-[40px] -right-6 shadow-xl border rounded-lg p-3 bg-white"
+            class=" absolute w-32 top-[40px] -right-6 shadow-xl border rounded-lg p-3 bg-white"
           >
             <button class="flex items-center hover:bg-gray-100 w-full p-2">
               <ion-icon name="person-outline"></ion-icon>

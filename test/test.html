@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+<style>
+    /* level settings 👇 */
+
+    .slider {
+        /* slider */
+        --slider-width: 100%;
+        --slider-height: 6px;
+        --slider-bg: rgb(82, 82, 82);
+        --slider-border-radius: 999px;
+        /* level */
+        --level-color: #fff;
+        --level-transition-duration: .1s;
+        /* icon */
+        --icon-margin: 15px;
+        --icon-color: var(--slider-bg);
+        --icon-size: 25px;
+    }
+
+    .slider {
+        margin-left: 200px;
+        cursor: pointer;
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+        flex-direction: row-reverse;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .slider .volume {
+        display: inline-block;
+        vertical-align: top;
+        margin-right: var(--icon-margin);
+        color: var(--icon-color);
+        width: var(--icon-size);
+        height: auto;
+    }
+
+    .slider .level {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: var(--slider-width);
+        height: var(--slider-height);
+        background: var(--slider-bg);
+        overflow: hidden;
+        border-radius: var(--slider-border-radius);
+        -webkit-transition: height var(--level-transition-duration);
+        -o-transition: height var(--level-transition-duration);
+        transition: height var(--level-transition-duration);
+        cursor: inherit;
+    }
+
+    .slider .level::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 0;
+        height: 0;
+        -webkit-box-shadow: -200px 0 0 200px var(--level-color);
+        box-shadow: -200px 0 0 200px var(--level-color);
+    }
+
+    .slider:hover .level {
+        height: calc(var(--slider-height) * 2);
+    }
+</style>
+
+<body class="bg-pink-100">
+    <label class="slider">
+        <input type="range" class="level">
+        <svg class="volume" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="512" height="512" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512"
+            xml:space="preserve">
+            <g>
+                <path
+                    d="M18.36 19.36a1 1 0 0 1-.705-1.71C19.167 16.148 20 14.142 20 12s-.833-4.148-2.345-5.65a1 1 0 1 1 1.41-1.419C20.958 6.812 22 9.322 22 12s-1.042 5.188-2.935 7.069a.997.997 0 0 1-.705.291z"
+                    fill="currentColor" data-original="#000000"></path>
+                <path
+                    d="M15.53 16.53a.999.999 0 0 1-.703-1.711C15.572 14.082 16 13.054 16 12s-.428-2.082-1.173-2.819a1 1 0 1 1 1.406-1.422A6 6 0 0 1 18 12a6 6 0 0 1-1.767 4.241.996.996 0 0 1-.703.289zM12 22a1 1 0 0 1-.707-.293L6.586 17H4c-1.103 0-2-.897-2-2V9c0-1.103.897-2 2-2h2.586l4.707-4.707A.998.998 0 0 1 13 3v18a1 1 0 0 1-1 1z"
+                    fill="currentColor" data-original="#000000"></path>
+            </g>
+        </svg>
+    </label>
+    <div class="relative flex m-20 flex-col ">
+        <input id="Slider" type="range" name="" id="" value="20" min="0" max="100" class="
+        hover:h-2.5 transition-all
+        -rotate-90 overflow-hidden cursor-pointer
+         absolute bottom-24 -left-8 w-28 h-2 appearance-none   bg-pink-200">
+        <p
+            class="absolute -rotate-90  bottom-24 -left-8 w-20 h-2  rounded-lg bg-gradient-to-r from-purple-500 to-pink-500">
+        </p>
+        <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" version="1.1"
+            xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 24 24"
+            style="enable-background:new 0 0 512 512" xml:space="preserve">
+            <g>
+                <path
+                    d="M18.36 19.36a1 1 0 0 1-.705-1.71C19.167 16.148 20 14.142 20 12s-.833-4.148-2.345-5.65a1 1 0 1 1 1.41-1.419C20.958 6.812 22 9.322 22 12s-1.042 5.188-2.935 7.069a.997.997 0 0 1-.705.291z"
+                    fill="currentColor" data-original="#000000"></path>
+                <path
+                    d="M15.53 16.53a.999.999 0 0 1-.703-1.711C15.572 14.082 16 13.054 16 12s-.428-2.082-1.173-2.819a1 1 0 1 1 1.406-1.422A6 6 0 0 1 18 12a6 6 0 0 1-1.767 4.241.996.996 0 0 1-.703.289zM12 22a1 1 0 0 1-.707-.293L6.586 17H4c-1.103 0-2-.897-2-2V9c0-1.103.897-2 2-2h2.586l4.707-4.707A.998.998 0 0 1 13 3v18a1 1 0 0 1-1 1z"
+                    fill="currentColor" data-original="#000000"></path>
+            </g>
+        </svg>
+
+    </div>
+    <div>
+        <span>123</span>
+        <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" version="1.1"
+            xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 24 24"
+            style="enable-background:new 0 0 512 512" xml:space="preserve">
+            <g>
+                <path
+                    d="M18.36 19.36a1 1 0 0 1-.705-1.71C19.167 16.148 20 14.142 20 12s-.833-4.148-2.345-5.65a1 1 0 1 1 1.41-1.419C20.958 6.812 22 9.322 22 12s-1.042 5.188-2.935 7.069a.997.997 0 0 1-.705.291z"
+                    fill="currentColor" data-original="#000000"></path>
+                <path
+                    d="M15.53 16.53a.999.999 0 0 1-.703-1.711C15.572 14.082 16 13.054 16 12s-.428-2.082-1.173-2.819a1 1 0 1 1 1.406-1.422A6 6 0 0 1 18 12a6 6 0 0 1-1.767 4.241.996.996 0 0 1-.703.289zM12 22a1 1 0 0 1-.707-.293L6.586 17H4c-1.103 0-2-.897-2-2V9c0-1.103.897-2 2-2h2.586l4.707-4.707A.998.998 0 0 1 13 3v18a1 1 0 0 1-1 1z"
+                    fill="currentColor" data-original="#000000"></path>
+            </g>
+        </svg>
+        <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" version="1.1"
+            xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 24 24"
+            style="enable-background:new 0 0 512 512" xml:space="preserve">
+            <g>
+                <path
+                    d="M18.36 19.36a1 1 0 0 1-.705-1.71C19.167 16.148 20 14.142 20 12s-.833-4.148-2.345-5.65a1 1 0 1 1 1.41-1.419C20.958 6.812 22 9.322 22 12s-1.042 5.188-2.935 7.069a.997.997 0 0 1-.705.291z"
+                    fill="currentColor" data-original="#000000"></path>
+                <path
+                    d="M15.53 16.53a.999.999 0 0 1-.703-1.711C15.572 14.082 16 13.054 16 12s-.428-2.082-1.173-2.819a1 1 0 1 1 1.406-1.422A6 6 0 0 1 18 12a6 6 0 0 1-1.767 4.241.996.996 0 0 1-.703.289zM12 22a1 1 0 0 1-.707-.293L6.586 17H4c-1.103 0-2-.897-2-2V9c0-1.103.897-2 2-2h2.586l4.707-4.707A.998.998 0 0 1 13 3v18a1 1 0 0 1-1 1z"
+                    fill="currentColor" data-original="#000000"></path>
+            </g>
+        </svg>
+    </div>
+    <div class="flex items-center w-[400px] h-[400px] bg-lime-200 ">
+        <svg class="w-10 h-10" xmlns="http://www.w3.org/2000/svg" version="1.1"
+            xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 24 24"
+            style="enable-background:new 0 0 512 512" xml:space="preserve">
+            <g>
+                <path
+                    d="M18.36 19.36a1 1 0 0 1-.705-1.71C19.167 16.148 20 14.142 20 12s-.833-4.148-2.345-5.65a1 1 0 1 1 1.41-1.419C20.958 6.812 22 9.322 22 12s-1.042 5.188-2.935 7.069a.997.997 0 0 1-.705.291z"
+                    fill="currentColor" data-original="#000000"></path>
+                <path
+                    d="M15.53 16.53a.999.999 0 0 1-.703-1.711C15.572 14.082 16 13.054 16 12s-.428-2.082-1.173-2.819a1 1 0 1 1 1.406-1.422A6 6 0 0 1 18 12a6 6 0 0 1-1.767 4.241.996.996 0 0 1-.703.289zM12 22a1 1 0 0 1-.707-.293L6.586 17H4c-1.103 0-2-.897-2-2V9c0-1.103.897-2 2-2h2.586l4.707-4.707A.998.998 0 0 1 13 3v18a1 1 0 0 1-1 1z"
+                    fill="currentColor" data-original="#000000"></path>
+            </g>
+        </svg>
+        <div class="relative w-[400px]  ">
+            <div class="box1 bg-gradient-to-r from-purple-500 to-pink-500 h-[2px]"></div>
+            <input class="inputBox absolute top-0 left-0" type="range" name="" id="" value="100">
+        </div>
+
+    </div>
+
+    <style>
+        .inputBox {
+            appearance: none;
+            height: 4px;
+            width: 100%;
+            background-color: transparent;
+
+        }
+
+        .inputBox::-webkit-slider-thumb {
+            appearance: none;
+            width: 10px;
+            height: 10px;
+            background-image: linear-gradient(to left, #a855f7, pink);
+            border-radius: 100%;
+        }
+
+        #Slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 0;
+            height: 0;
+            box-shadow: -200px 0 0 200px white;
+        }
+    </style>
+    <script>
+        const input = document.querySelector('.inputBox');
+        const box1 = document.querySelector('.box1');
+        console.log(input)
+        input.onclick = () => {
+        }
+
+        input.onmousemove = () => {
+            // mousemove touchmove touchend click
+            box1.style.width = `${input.value}%`
+        }
+    </script>
+</body>
+
+</html>
