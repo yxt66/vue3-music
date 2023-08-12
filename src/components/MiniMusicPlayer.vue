@@ -1,6 +1,6 @@
 <script setup>
 import { toRefs ,ref} from "vue";
-
+import Slider from './Slider.vue'
 const props = defineProps({
   musicPlaying: Boolean,
 });
@@ -19,12 +19,14 @@ const msPlay = () => {
   emit("msPlay");
 };
 
-const changeSlider = () =>{
-  const Slider = document.querySelector('#Slider');
+const changevolumeSlider = () =>{
+  const volumeSlider = document.querySelector('#volumeSlider');
   const SliderValueBox = document.querySelector('#SliderValueBox');
-  SliderValueBox.style.width = `${Slider.value}%`
+  SliderValueBox.style.width = `${volumeSlider.value}%`
 }
-let showSlider = ref(false)
+
+let showSlider = ref(false);
+
 </script>
 <template>
   <!--  -->
@@ -33,39 +35,7 @@ let showSlider = ref(false)
     class="z-50 absolute right-0 bottom-[68px] md:bottom-0 md:right-0 md:w-[80%] w-full p-2 bg-white"
   >
     <!-- 进度条 -->
-    <div class="mb-1">
-      <div class="relative" >
-        <input
-          id="inputRange"
-          class="z-50 w-full cursor-pointer opacity-0"
-          type="range"
-          name=""
-          min="0"
-          max="100"
-          value="20"
-        />
-        <div
-          id="progressBar"
-          class="h-0.5 bg-gradient-to-r w-10 from-purple-500 to-pink-500 absolute top-2 left-0"
-        >
-          <div
-            id="dot"
-            class="w-2 h-2 rounded-full bg-pink-500 absolute -top-1 right-0 cursor-pointer"
-          ></div>
-        </div>
-        <!-- 
-                  @touchstart="test1($event)"
-        @touchsend="test2($event)"
-        @mousemove="modifyInputRange($event)"
-        @mousedown="modifyInputRange($event)" 
-                @change="modifyInputRange($event)"
-         -->
-      </div>
-      <!-- <div class="flex justify-between text-xs text-gray-500">
-        <div>00:00</div>
-        <div>01:00</div>
-      </div> -->
-    </div>
+    <Slider class="ml-0.5 mb-1" />
     <!-- 播放组件 -->
     <div class="flex w-full items-center justify-between gap-2 h-8">
       <!-- 当屏幕大于768px显示 -->
@@ -124,7 +94,7 @@ let showSlider = ref(false)
       </button> -->
 
       <!-- 音量组件 -->
-      <div class="w-5 h-5 relative">
+      <div class="hidden md:block w-5 h-5 relative">
         <div
           v-if="showSlider"
           class=" z-50 absolute h-[4px] hover:h-[8px] hover:block transition-all w-28 -top-4 left-3 origin-bottom-left -rotate-90 rounded-lg bg-gray-200"
@@ -135,17 +105,20 @@ let showSlider = ref(false)
           ></div>
           <input
             @blur="showSlider = false"
-            id="Slider"
+            id="volumeSlider"
             type="range"
-            name=""
             class=" absolute top-0 left-0 appearance-none w-full h-full  bg-transparent rounded-lg"
             min="0"
             max="100"
             value="20"
-            @change="changeSlider"
-            @mousemove="changeSlider"
+            @change="changevolumeSlider"
+            @mousemove="changevolumeSlider"
           />
         </div>
+        <!--
+            @change="changeSlider"
+            @mousemove="changeSlider"
+           -->
         <svg
           
           @click="showSlider = !showSlider"
@@ -185,10 +158,5 @@ let showSlider = ref(false)
   <!-- --- -->
 </template>
 <style scoped>
-#Slider::-webkit-slider-thumb {
-  appearance: none;
-  width: 0;
-  height: 0;
-  /* cursor: pointer; */
-}
+
 </style>

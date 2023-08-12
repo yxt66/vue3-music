@@ -32,41 +32,7 @@
 
     <!--  -->
     <!-- 进度条 -->
-    <div class="backdrop-blur	 px-3">
-      <div class="relative">
-        <input
-          id="inputRange"
-          class="z-50 w-full cursor-pointer opacity-0"
-          type="range"
-          name=""
-          min="0"
-          max="100"
-          value="0"
-          @change="modifyInputRange($event)"
-          @mousedown="mouseDown($event)"
-        />
-        <div
-          id="progressBar"
-          class=" h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 absolute top-2 left-0"
-        >
-          <div
-            id="dot"
-            class="w-2 h-2 rounded-full bg-pink-500 absolute -top-1 right-0 cursor-pointer"
-          ></div>
-        </div>
-        <!-- 
-                  @touchstart="test1($event)"
-        @touchsend="test2($event)"
-        @mousemove="modifyInputRange($event)"
-        @mousedown="modifyInputRange($event)" 
-                @change="modifyInputRange($event)"
-         -->
-      </div>
-      <div class="flex justify-between text-xs text-gray-500">
-        <div>00:00</div>
-        <div>01:00</div>
-      </div>
-    </div>
+    <Slider class="p-2"/>
     <!-- 播放组件 -->
     <div class=" bg-gradient-to-b from-white to-[#ddd6fe] flex w-full h-36 items-center justify-between gap-3 px-6">
 
@@ -116,7 +82,7 @@
 
 <script setup>
 import { nextTick, ref } from "vue";
-
+import Slider from './Slider.vue'
 const props = defineProps({
   musicPlaying:Boolean
 });
@@ -215,4 +181,10 @@ function mouseMove($event){
 function mouseUp($event){
   flag = false
 }
+
+
 </script>
+
+<style scoped>
+
+</style>

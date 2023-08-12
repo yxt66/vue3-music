@@ -3,6 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.js"></script>
     <style type="text/css">
       * {
@@ -81,9 +83,9 @@
     <title>彩色渐变滑动条</title>
   </head>
   <body>
-    <div class="slider-panel">
+    <div class="slider-panel w-screen h-screen">
       <!--slider-box表示整个滑条的颜色  -->
-      <div class="slider-box">
+      <div class="slider-box rotate-90">
         <!--slider-value表示滑条划过后的部分用一个颜色显示覆盖slider-box的颜色达到进度作用  -->
         <p class="slider-value"></p>
         <!-- 滑条的背景颜色透明只有-->
