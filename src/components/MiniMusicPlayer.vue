@@ -124,7 +124,7 @@ let showSlider = ref(false)
       </button> -->
 
       <!-- 音量组件 -->
-      <div class="w-5 h-5 relative">
+      <div class="w-5 h-5 relative ">
         <div
           v-if="showSlider"
           class=" z-50 absolute h-[4px] hover:h-[8px] hover:block transition-all w-28 -top-4 left-3 origin-bottom-left -rotate-90 rounded-lg bg-gray-200"
@@ -142,14 +142,19 @@ let showSlider = ref(false)
             min="0"
             max="100"
             value="20"
+            @touchmove="changeSlider"
             @change="changeSlider"
             @mousemove="changeSlider"
           />
+          <!--
+            @touchstart="changeSlider"
+            @touchsend="changeSlider" 
+          -->
         </div>
         <svg
           
           @click="showSlider = !showSlider"
-          class="w-full h-full "
+          class="w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
           version="1.1"
           xmlns:xlink="http://www.w3.org/1999/xlink"
