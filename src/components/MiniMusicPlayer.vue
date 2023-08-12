@@ -94,6 +94,7 @@ let showSlider = ref(false);
       </button> -->
 
       <!-- 音量组件 -->
+
       <div class="hidden md:block w-5 h-5 relative">
         <div
           v-if="showSlider"
@@ -114,6 +115,10 @@ let showSlider = ref(false);
             @change="changevolumeSlider"
             @mousemove="changevolumeSlider"
           />
+          <!--
+            @touchstart="changeSlider"
+            @touchsend="changeSlider" 
+          -->
         </div>
         <!--
             @change="changeSlider"
@@ -122,7 +127,7 @@ let showSlider = ref(false);
         <svg
           
           @click="showSlider = !showSlider"
-          class="w-full h-full "
+          class="w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
           version="1.1"
           xmlns:xlink="http://www.w3.org/1999/xlink"
