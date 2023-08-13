@@ -1,3 +1,3 @@
 <template>
-    <div>History</div>
+    <div>History涛哥正在开发中。。</div>
 </template>
