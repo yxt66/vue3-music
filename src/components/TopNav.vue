@@ -9,6 +9,7 @@ let showMenu = ref(false);
 </script>
 <template>
   <!-- nav -->
+  <!-- dark:bg-slate-800 dark:text-white -->
   <div
     id="TopNav"
     class="dark:border-none z-30 fixed border-b w-full md:w-[80%] h-[55px] max-w-[1100px] rounded-t-lg p-6 flex items-center"
