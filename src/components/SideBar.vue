@@ -2,7 +2,7 @@
 <template>
   <div
     id="SideNav"
-    class="hidden md:block min-w-[20%] w-[20%] rounded-bl-xl h-full bg-[#f1f5f9] overflow-auto dark:bg-slate-800"
+    class=" dark:bg-slate-900 hidden md:block min-w-[20%] w-[20%] rounded-bl-xl h-full bg-[#f1f5f9] overflow-auto "
   >
     <div class="w-full mx-auto mt-[55px]">
       <MenuItem iconString="首页" name="Home" pageUrl="/home" />

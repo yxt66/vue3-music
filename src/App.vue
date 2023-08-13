@@ -8,7 +8,6 @@ import {
   ref,
 } from "vue";
 
-
 import { useSongStore } from "@/stores/song.js";
 import { RouterView } from "vue-router";
 import TopNav from "./components/TopNav.vue";
@@ -21,19 +20,20 @@ import MiniMusicPlayer from "./components/MiniMusicPlayer.vue";
 // 页面关闭时先执行onbeforeunload，最后onunload
 // 页面刷新时先执行onbeforeunload，然后onunload，最后onload。
 
-onMounted(()=>{
+onMounted(() => {
   useSongStore().resetMusicPaused();
   useSongStore().getSongsList();
-})
+});
 
 let show = ref(false);
-
 </script>
 
 <template >
-  <div class=" dark:bg-slate-800 dark:text-white flex items-center justify-center h-screen w-full">
+  <div
+    class="dark:bg-slate-800 dark:text-white flex items-center justify-center h-screen w-full"
+  >
     <div
-      class="  relative flex w-screen h-screen md:w-[80%] md:h-[80%] md:rounded-xl md:shadow-md max-w-[1100px]"
+      class="relative flex w-screen h-screen md:w-[80%] md:h-[80%] md:rounded-xl md:shadow-md max-w-[1100px]"
     >
       <!-- TopNav -->
       <TopNav />
@@ -41,7 +41,8 @@ let show = ref(false);
       <SideBar />
       <!-- <Test/> -->
       <RouterView
-        class="w-full h-[calc(100%-55px)] mt-[55px] pt-2 pl-2 pb-16 overflow-y-auto "
+        id="RouterView"
+        class="w-full h-[calc(100%-55px)] mt-[55px] pt-2 pl-2 pb-16 overflow-y-auto"
       />
       <!-- 手机屏幕导航栏 -->
       <MDSideBar />
@@ -60,4 +61,15 @@ let show = ref(false);
 </template>
 
 <style scoped>
+#RouterView:hover::-webkit-scrollbar-thumb {
+  background-color: gray;
+}
+#RouterView::-webkit-scrollbar {
+  appearance: none;
+  width: 4px;
+}
+#RouterView::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 15px;
+}
 </style>
