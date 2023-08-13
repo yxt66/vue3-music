@@ -30,7 +30,7 @@ const songStore = useSongStore();
 
       <div class="flex flex-col justify-between h-40 overflow-hidden">
         <div class="text-2xl font-bold">G.E.M邓紫棋</div>
-        <div class="text-xs text-gray-500 leading-normal mt-2">
+        <div class=" text-xs text-gray-500 leading-normal mt-2">
           邓紫棋，又名G.E.M.，原名邓诗颖，是一名香港创作女歌手。2008年7月10日，以16岁之龄出道，
           <!-- 取得香港三大乐坛颁奖礼新人金奖。2012年，发行专辑《Xposed》
             并夺得香港IFPI成为全年最高销量香港女歌手，凭借《Xposed》
@@ -47,7 +47,7 @@ const songStore = useSongStore();
     </div>
     <!-- songlist -->
     <div
-      class="flex p-3 justify-between w-full text-xs md:text-sm text-gray-500"
+      class="flex p-3 justify-between w-full text-xs md:text-sm text-gray-500 dark:text-white"
     >
       <div>歌曲</div>
       <div>歌手</div>
@@ -70,7 +70,7 @@ const songStore = useSongStore();
         @click.stop="songStore.addLoveSong(song, index)"
       >
         <svg
-          class="w-5 h-5"
+          class="w-5 h-5 dark:fill-white"
           v-if="!song.favourite"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +91,10 @@ const songStore = useSongStore();
         </svg>
       </div>
 
-      <span  :class="index === songStore.music.musicIndex ? 'text-[#F02C56]' : ''">
+      <span  
+      class="dark:text-white"
+      :class="index === songStore.music.musicIndex ? 'text-[#F02C56]' : ''">
+        
         {{ song.name.replace(".mp3", "") }}
       </span>
     </div>

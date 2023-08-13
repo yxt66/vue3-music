@@ -1,7 +1,7 @@
 
 <template>
   <div
-    class=" md:w-full md:h-full z-50 absolute top-0 left-0 w-screen h-screen bg-white"
+    class="dark:text-white dark:bg-slate-800 md:w-full md:h-full z-50 absolute top-0 left-0 w-screen h-screen bg-white"
   >
     <!-- PalyerDownIcon -->
     <div class="m-4 ">
@@ -34,7 +34,7 @@
     <!-- 进度条 -->
     <Slider class="p-2"/>
     <!-- 播放组件 -->
-    <div class=" bg-gradient-to-b from-white to-[#ddd6fe] flex w-full h-36 items-center justify-between gap-3 px-6">
+    <div class="dark:text-white dark:bg-slate-800 bg-gradient-to-b from-white to-[#ddd6fe] flex w-full h-36 items-center justify-between gap-3 px-6">
 
       <button class="text-xl text-gray-500">
         <!-- 随机 -->

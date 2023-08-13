@@ -150,7 +150,19 @@ export const useSongStore = defineStore('song', {
     },
     //音乐结束
     musicEnded() {
-      console.log(1)
+      //播放下一首歌
+      this.playNextMusic();
+    },
+    playNextMusic() {
+      let tempIndex = null;
+      let musicListLength = this.songsList.length;
+      let musicIndex = this.music.musicIndex;
+      if (musicIndex + 1 >= musicListLength) {
+        tempIndex = 0;
+      } else {
+        tempIndex = musicIndex + 1;
+      }
+      this.audioHook(this.songsList[tempIndex].name, tempIndex);
     },
     async getMusicInfo(songName) {
       let res = await this.qqSearchSong(songName);

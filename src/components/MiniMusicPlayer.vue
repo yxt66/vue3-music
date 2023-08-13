@@ -15,16 +15,9 @@ const emit = defineEmits(["showMusicPlayer"]);
 
 //播放下一首歌
 const playNextMusic = () => {
-  let tempIndex = null;
-  let musicListLength = useSongStore().songsList.length;
-  let musicIndex = useSongStore().music.musicIndex;
-  if (musicIndex + 1 >= musicListLength) {
-    tempIndex = 0;
-  } else {
-    tempIndex = musicIndex + 1;
-  }
-  useSongStore().audioHook(useSongStore().songsList[tempIndex].name, tempIndex);
+  useSongStore().playNextMusic();
 };
+
 //播放上一首歌
 const playPreviousMusic = () => {
   let tempIndex = null;
@@ -36,13 +29,13 @@ const playPreviousMusic = () => {
     tempIndex = musicIndex - 1;
   }
   useSongStore().audioHook(useSongStore().songsList[tempIndex].name, tempIndex);
-}
+};
 </script>
 <template>
   <!--  -->
   <div
     id="MiniMusicPlayer"
-    class="z-50 absolute right-0 bottom-[68px] md:bottom-0 md:right-0 md:w-[80%] w-full p-2 bg-white"
+    class="dark:bg-slate-800 z-50 absolute right-0 bottom-[68px] md:bottom-0 md:right-0 md:w-[80%] w-full p-2 bg-white"
   >
     <!-- 进度条 -->
     <Slider class="ml-0.5 mb-1" />
@@ -94,7 +87,7 @@ const playPreviousMusic = () => {
         <button class="w-5 h-5">
           <svg
             t="1691894797861"
-            class="w-4 h-4"
+            class="dark:fill-white h-4 w-4 fill-[#707070]"
             viewBox="0 0 1024 1024"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +104,7 @@ const playPreviousMusic = () => {
         <button class="hidden w-5 h-5">
           <svg
             t="1691895209290"
-            class="icon w-full h-full"
+            class="dark:fill-white h-full w-full fill-[#707070]"
             viewBox="0 0 1024 1024"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -127,7 +120,6 @@ const playPreviousMusic = () => {
             <path
               d="M478.5 491.2c-5.1 0-10.2-2-14.1-5.9-7.8-7.8-7.8-20.5 0-28.3l67.1-67.1c7.8-7.8 20.5-7.8 28.3 0s7.8 20.5 0 28.3l-67.1 67.1c-4 4-9.1 5.9-14.2 5.9z"
               p-id="6763"
-              fill="#707070"
             ></path>
             <path
               d="M169.6 791c-5.7 0-11.4-2.4-15.3-7.1-27.4-32.6-48.8-69.2-63.5-109-15.3-41.1-23-84.4-23-128.7 0-49.9 9.8-98.3 29-143.8 18.6-44 45.2-83.5 79.2-117.4 33.9-33.9 73.4-60.6 117.4-79.2 45.6-19.3 93.9-29 143.8-29h274c11 0 20 9 20 20s-9 20-20 20h-274c-181.7 0-329.5 147.8-329.5 329.5 0 77.5 27.4 152.7 77.2 211.9 7.1 8.5 6 21.1-2.4 28.2-3.8 3-8.4 4.6-12.9 4.6z"
@@ -155,7 +147,7 @@ const playPreviousMusic = () => {
         <button class="w-5 h-5" @click="playPreviousMusic">
           <svg
             t="1691896362703"
-            class="h-full w-full"
+            class="dark:fill-white h-full w-full fill-[#707070]"
             viewBox="0 0 1024 1024"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -164,7 +156,6 @@ const playPreviousMusic = () => {
             <path
               d="M803.584 134.592c-18.176-10.048-39.936-10.112-58.112 0L192 443.008l0-282.88c0-17.664-14.336-32-32-32S128 142.464 128 160.128l0 344.896C127.744 507.2 127.104 509.248 127.104 511.488S127.744 515.84 128 518.016l0 346.112c0 17.664 14.336 32 32 32s32-14.336 32-32L192 579.968l553.408 308.352C754.56 893.44 764.48 896 774.528 896s19.968-2.56 29.056-7.616c18.176-10.112 28.992-28.224 28.992-48.576L832.576 183.104C832.576 162.88 821.76 144.768 803.584 134.592zM768.192 829.248 198.016 511.488 771.328 192 768.192 829.248z"
               p-id="9254"
-              fill="#707070"
             ></path>
           </svg>
         </button>
@@ -177,7 +168,7 @@ const playPreviousMusic = () => {
         </button>
         <button
           v-else
-          class="w-10 h-10 text-xl text-[#18181b]"
+          class="dark:text-white w-10 h-10 text-xl text-[#18181b]"
           @click="useSongStore().initAudio()"
         >
           <ion-icon name="play-outline" class="w-full h-full"></ion-icon>
@@ -186,7 +177,7 @@ const playPreviousMusic = () => {
         <button class="w-5 h-5" @click="playNextMusic">
           <svg
             t="1691896338766"
-            class="w-full h-full"
+            class="dark:fill-white h-full w-full fill-[#707070]"
             viewBox="0 0 1024 1024"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -195,7 +186,6 @@ const playPreviousMusic = () => {
             <path
               d="M832 160.128c0-17.664-14.336-32-32-32S768 142.464 768 160.128l0 282.88L214.592 134.592c-18.176-10.112-39.936-10.048-58.112 0C138.24 144.768 127.424 162.88 127.424 183.168l0 656.64c0 20.224 10.816 38.464 29.056 48.576C165.568 893.44 175.488 896 185.472 896s19.968-2.56 29.056-7.616L768 579.968l0 284.096c0 17.664 14.336 32 32 32s32-14.336 32-32L832 160.128zM191.808 829.248 188.672 192l573.312 319.488L191.808 829.248z"
               p-id="8222"
-              fill="#707070"
             ></path>
           </svg>
         </button>
@@ -227,7 +217,7 @@ const playPreviousMusic = () => {
           <!--  @mousemove="changevolumeSlider" -->
           <svg
             @click="showSlider = !showSlider"
-            class="w-full h-full text-gray-500"
+            class="dark:text-white w-full h-full text-gray-500"
             xmlns="http://www.w3.org/2000/svg"
             version="1.1"
             xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -256,7 +246,7 @@ const playPreviousMusic = () => {
       </div>
 
       <div
-        class="basis-1/3 h-full text-lg text-gray-500 flex items-center justify-end"
+        class="dark:text-white basis-1/3 h-full text-lg text-gray-500 flex items-center justify-end"
       >
         <!-- 菜单 -->
 

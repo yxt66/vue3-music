@@ -23,7 +23,7 @@ if (iconString.value === "最近播放") icon.value = "cloud-done-outline";
 <template>
   <div
     id="MenuItem"
-    class="w-full flex items-center hover:bg-[#e2e8f0] p-2.5 rounded-md"
+    class="dark:hover:text-slate-800 w-full flex items-center hover:bg-[#e2e8f0] p-2.5 rounded-md"
     :class="$route.fullPath === pageUrl ? 'bg-[#e2e8f0]' :''"
     @click="$router.push(`${pageUrl}`)"
   >

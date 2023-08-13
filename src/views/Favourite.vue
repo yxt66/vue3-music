@@ -56,7 +56,7 @@ const songStore = useSongStore();
     <template v-for="(song, index) in songStore.songsList" :key="index">
       <div
         v-if="song.favourite"
-        class="flex items-center gap-2 text-sm py-2 cursor-pointer text-[#18181b]"
+        class="dark:text-white flex items-center gap-2 text-sm py-2 cursor-pointer text-[#18181b]"
         @click="songStore.initAudio(song, index)"
       >
         <!-- <ion-icon

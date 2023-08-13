@@ -7,6 +7,8 @@ import {
   onUpdated,
   ref,
 } from "vue";
+
+
 import { useSongStore } from "@/stores/song.js";
 import { RouterView } from "vue-router";
 import TopNav from "./components/TopNav.vue";
@@ -29,9 +31,9 @@ let show = ref(false);
 </script>
 
 <template >
-  <div class="flex items-center justify-center h-screen w-full">
+  <div class=" dark:bg-slate-800 dark:text-white flex items-center justify-center h-screen w-full">
     <div
-      class="relative flex w-screen h-screen md:w-[80%] md:h-[80%] md:rounded-xl md:shadow-md max-w-[1100px]"
+      class="  relative flex w-screen h-screen md:w-[80%] md:h-[80%] md:rounded-xl md:shadow-md max-w-[1100px]"
     >
       <!-- TopNav -->
       <TopNav />
