@@ -3,6 +3,8 @@ import axios from 'axios';
 import { defineStore } from 'pinia';
 
 let songs = [
+  {name:"Love Story - Taylor Swift.mp3"},
+  {name:"You Belong With Me - Taylor Swift.mp3"},
   { name: "Letting Go - 蔡健雅.mp3", favourite: true },
   { name: "Music灰姑娘 - 梁咏琪.mp3", favourite: true },
   { name: "人世间-电视剧《人世间》主题曲 - 雷佳.mp3" },
