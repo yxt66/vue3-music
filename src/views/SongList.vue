@@ -91,7 +91,7 @@ const songStore = useSongStore();
         </svg>
       </div>
 
-      <span :class="index === songStore.music.musicIndex ? 'text-[#F02C56]' : ''">
+      <span  :class="index === songStore.music.musicIndex ? 'text-[#F02C56]' : ''">
         {{ song.name.replace(".mp3", "") }}
       </span>
     </div>
