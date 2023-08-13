@@ -1,23 +1,8 @@
 <script setup>
 import { toRefs ,ref} from "vue";
-import Slider from './Slider.vue'
-const props = defineProps({
-  musicPlaying: Boolean,
-});
+import { useSongStore } from "@/stores/song.js";
 
-const { musicPlaying } = toRefs(props); //props变则musicPlaying变
 
-const emit = defineEmits(["showMusicPlayer", "musicPause", "msPlay"]);
-
-const showMusicPlayer = () => {
-  emit("showMusicPlayer");
-};
-const musicPause = () => {
-  emit("musicPause");
-};
-const msPlay = () => {
-  emit("msPlay");
-};
 
 const changevolumeSlider = () =>{
   const volumeSlider = document.querySelector('#volumeSlider');
@@ -39,7 +24,7 @@ let showSlider = ref(false);
     <!-- 播放组件 -->
     <div class="flex w-full items-center justify-between gap-2 h-8">
       <!-- 当屏幕大于768px显示 -->
-      <div class="flex items-center justify-center" @click="showMusicPlayer">
+      <div class="relative flex items-center justify-center" >
         <img
           src="/public/artist/img/1.webp"
           alt=""
@@ -71,13 +56,15 @@ let showSlider = ref(false);
         <ion-icon name="chevron-back-outline" class="w-full h-full"></ion-icon>
       </button>
       <button
-        v-if="musicPlaying"
+        v-if="!useSongStore().music.musicPaused"
         class="w-10 h-10 text-xl text-[#18181b]"
-        @click="musicPause"
+        @click="useSongStore().initAudio()"
       >
         <ion-icon name="pause-outline" class="w-full h-full"></ion-icon>
       </button>
-      <button v-else class="w-10 h-10 text-xl text-[#18181b]" @click="msPlay">
+      <button v-else class="w-10 h-10 text-xl text-[#18181b]" 
+        @click="useSongStore().initAudio()"
+      >
         <!-- 播放 -->
         <ion-icon name="play-outline" class="w-full h-full"></ion-icon>
       </button>
@@ -127,7 +114,7 @@ let showSlider = ref(false);
         <svg
           
           @click="showSlider = !showSlider"
-          class="w-full h-full"
+          class="w-full h-full text-gray-500"
           xmlns="http://www.w3.org/2000/svg"
           version="1.1"
           xmlns:xlink="http://www.w3.org/1999/xlink"

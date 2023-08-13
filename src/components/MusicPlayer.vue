@@ -52,7 +52,7 @@
         <!-- 左 -->
         <ion-icon name="chevron-back-outline"></ion-icon>
       </button>
-      <button v-if="props.musicPlaying" class="w-16 h-16 text-4xl text-[#18181b] "
+      <button v-if="!useSongStore().music.musicPaused" class="w-16 h-16 text-4xl text-[#18181b] "
 >
         <ion-icon name="pause-outline"></ion-icon>
       </button>
@@ -82,10 +82,11 @@
 
 <script setup>
 import { nextTick, ref } from "vue";
-import Slider from './Slider.vue'
-const props = defineProps({
-  musicPlaying:Boolean
-});
+import { useSongStore } from "@/stores/song.js";
+
+// const props = defineProps({
+//   musicPlaying:Boolean
+// });
 
 const emit = defineEmits(['showMusicPlayer']);
 
@@ -158,30 +159,6 @@ const lyric = [
   { time: "04:18.64", span: "让爱渗透了地面" },
   { time: "04:22.19", span: "我要的只是你在我身边" },
 ];
-
-function modifyInputRange($event) {
-  window.addEventListener('mousedown',mouseDown);
-  window.addEventListener('mouseup',mouseUp)
-  // console.log(document.getElementById("inputRange").value);
-  document.getElementById("progressBar").style.width = `${
-    document.getElementById("inputRange").value
-  }%`;
-}
-let flag = false
-function mouseDown($event){
-  flag = true
-  console.log($event);
-  window.addEventListener('mousemove',mouseMove)
-}
-function mouseMove($event){
-  if(flag){
-    document.getElementById("progressBar").style.width = ($event.clientX-92) +'px'  
-  }
-}
-function mouseUp($event){
-  flag = false
-}
-
 
 </script>
 

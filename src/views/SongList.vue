@@ -1,36 +1,23 @@
 <script setup>
 import { ref } from "vue";
+import { useSongStore } from "@/stores/song.js";
 
-let songs = ref([
-  { name: "Letting Go - 蔡健雅.mp3" },
-  { name: "Music灰姑娘 - 梁咏琪.mp3" },
-  { name: "人世间-电视剧《人世间》主题曲 - 雷佳.mp3" },
-  { name: "光字片-《人世间》歌曲 - 周深.mp3" },
-  { name: "如愿 - 王菲.mp3" },
-  { name: "旺仔小乔 - 樱花树下的约定（完整版）.mp3" },
-  { name: "是妈妈是女儿 - 黄绮珊,希林娜依高.mp3" },
-  { name: "桃花诺 - G.E.M.邓紫棋.mp3" },
-  { name: "等你下课(with 杨瑞代) - 周杰伦,周杰伦.mp3" },
-  { name: "路过人间 - 郁可唯.mp3" },
-  { name: "飘雪(Live) - 梁玉莹.mp3" },
-  { name: "飞花(Live) - 李克勤,梁玉莹.mp3" },
-]);
-let audio = ref(null);
-let selectSongIndex = ref(-1);
-const emits = defineEmits(['musicPlaying'])
+const songStore = useSongStore();
 
-const playMusic = (song,index) =>{
-  
-  selectSongIndex.value = index;
-  if(audio){
-    audio.src = ''
-  }
-  audio = new Audio(`/vue3-music/artist/songs/${song.name}`);
+// let audio = ref(null);
+// let selectSongIndex = ref(-1);
 
-  emits('musicPlaying',audio); //通知组件开始播放音乐
+// const emits = defineEmits(["musicPlaying"]);
 
+// const playMusic = (song, index) => {
+//   selectSongIndex.value = index;
+//   if (audio) {
+//     audio.src = "";
+//   }
+//   audio = new Audio(`/vue3-music/artist/songs/${song.name}`);
 
-}
+//   emits("musicPlaying", audio); //通知组件开始播放音乐
+// };
 </script>
 <template>
   <div>
@@ -66,15 +53,47 @@ const playMusic = (song,index) =>{
       <div>歌手</div>
       <div>专辑</div>
     </div>
-    <div v-for="(song, index) in songs" :key="index" 
-    :class="index === selectSongIndex ? 'text-[#F02C56]':''"
-    class="
-    flex items-center gap-2 text-sm  py-2 cursor-pointer
-    " 
-    @click="playMusic(song,index)">
-      <ion-icon name="heart-outline" ></ion-icon>
-      {{ song.name.replace(".mp3", "") }}
-    </div>
+    <div
+      v-for="(song, index) in songStore.songsList"
+      :key="index"
+      class="flex items-center gap-2 text-sm py-2 cursor-pointer text-[#18181b]"
+      @click="songStore.initAudio(song, index)"
+    >
+      <!-- <ion-icon
+        name="heart-outline"
+        :class="song.favourite ? 'text-[#F02C56]' : ''"
+        class="text-xl"
+        @click.stop="songStore.addLoveSong(song,index)"
+      ></ion-icon> -->
+      <div
+        :class="song.favourite ? 'fill-[#F02C56]' : ''"
+        @click.stop="songStore.addLoveSong(song, index)"
+      >
+        <svg
+          class="w-5 h-5"
+          v-if="!song.favourite"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z"
+          ></path>
+        </svg>
+        <svg
+          v-else
+          class="w-5 h-5"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"
+          ></path>
+        </svg>
+      </div>
 
+      <span :class="index === songStore.music.musicIndex ? 'text-[#F02C56]' : ''">
+        {{ song.name.replace(".mp3", "") }}
+      </span>
+    </div>
   </div>
 </template>

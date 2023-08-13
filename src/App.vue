@@ -1,5 +1,13 @@
 <script setup>
-import { ref } from "vue";
+import {
+  onBeforeUnmount,
+  onBeforeUpdate,
+  onMounted,
+  onUnmounted,
+  onUpdated,
+  ref,
+} from "vue";
+import { useSongStore } from "@/stores/song.js";
 import { RouterView } from "vue-router";
 import TopNav from "./components/TopNav.vue";
 import SideBar from "./components/SideBar.vue";
@@ -7,18 +15,17 @@ import MDSideBar from "./components/MDSideBar.vue";
 import Test from "./components/Test.vue";
 import MusicPlayer from "./components/MusicPlayer.vue";
 import MiniMusicPlayer from "./components/MiniMusicPlayer.vue";
+//当组件挂载的时候给window绑定事件，让浏览器页面刷新的时候执行事件(暂停音乐)
+// 页面关闭时先执行onbeforeunload，最后onunload
+// 页面刷新时先执行onbeforeunload，然后onunload，最后onload。
+
+onMounted(()=>{
+  useSongStore().resetMusicPaused();
+  
+})
+
 let show = ref(false);
-let musicIsPlaying = ref(false);
-let audio = ref(null);
-const musicPlaying = value => {
-  musicIsPlaying.value = true;
-  audio = value || audio;
-  audio.play();
-}
-const musicPause = () => {
-  musicIsPlaying.value = false;
-  audio.pause();
-}
+
 </script>
 
 <template >
@@ -32,15 +39,20 @@ const musicPause = () => {
       <SideBar />
       <!-- <Test/> -->
       <RouterView
-        @musicPlaying="musicPlaying"
         class="w-full h-[calc(100%-55px)] mt-[55px] pt-2 pl-2 overflow-y-auto"
       />
       <!-- 手机屏幕导航栏 -->
       <MDSideBar />
       <!-- 播放器加歌词组件 -->
-      <MusicPlayer v-show="show" @showMusicPlayer="show = false" :musicPlaying="musicIsPlaying" ></MusicPlayer>
+      <MusicPlayer
+        v-show="show"
+        @showMusicPlayer="show = false"
+      ></MusicPlayer>
       <!-- 下方的播放器 -->
-      <MiniMusicPlayer v-show="!show" @showMusicPlayer="show = !show" :musicPlaying="musicIsPlaying" @musicPause="musicPause" @msPlay="musicPlaying"></MiniMusicPlayer>
+      <MiniMusicPlayer
+        v-show="!show"
+        @showMusicPlayer="show = !show"
+      ></MiniMusicPlayer>
     </div>
   </div>
 </template>
