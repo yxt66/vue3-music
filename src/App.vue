@@ -21,7 +21,7 @@ import MiniMusicPlayer from "./components/MiniMusicPlayer.vue";
 
 onMounted(()=>{
   useSongStore().resetMusicPaused();
-  
+  useSongStore().getSongsList();
 })
 
 let show = ref(false);
@@ -39,14 +39,14 @@ let show = ref(false);
       <SideBar />
       <!-- <Test/> -->
       <RouterView
-        class="w-full h-[calc(100%-55px)] mt-[55px] pt-2 pl-2 overflow-y-auto"
+        class="w-full h-[calc(100%-55px)] mt-[55px] pt-2 pl-2 pb-16 overflow-y-auto "
       />
       <!-- 手机屏幕导航栏 -->
       <MDSideBar />
       <!-- 播放器加歌词组件 -->
       <MusicPlayer
         v-show="show"
-        @showMusicPlayer="show = false"
+        @hiddenMusicPlayer="show = false"
       ></MusicPlayer>
       <!-- 下方的播放器 -->
       <MiniMusicPlayer

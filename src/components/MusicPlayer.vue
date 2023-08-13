@@ -5,7 +5,7 @@
   >
     <!-- PalyerDownIcon -->
     <div class="m-4 ">
-      <ion-icon name="chevron-down-outline" @click="showPlayer" class="hover:text-[#F02C56]">
+      <ion-icon name="chevron-down-outline" @click="emit('hiddenMusicPlayer')" class="hover:text-[#F02C56]">
       </ion-icon>
     </div>
     <!-- ArtistImg -- and !-- lyrics -->
@@ -48,19 +48,23 @@
         顺序
         <ion-icon name="repeat-outline"></ion-icon>
       </button> -->
-      <button class="text-[#18181b] text-2xl">
+      <button class="text-[#18181b] text-2xl"  @click="playPreviousMusic">
         <!-- 左 -->
         <ion-icon name="chevron-back-outline"></ion-icon>
       </button>
-      <button v-if="!useSongStore().music.musicPaused" class="w-16 h-16 text-4xl text-[#18181b] "
+      <button 
+      @click="useSongStore().initAudio()"
+      v-if="!useSongStore().music.musicPaused" class="w-16 h-16 text-4xl text-[#18181b] "
 >
         <ion-icon name="pause-outline"></ion-icon>
       </button>
-      <button v-else class=" w-16 h-16 text-4xl text-[#18181b] ">
+      <button 
+      @click="useSongStore().initAudio()"
+      v-else class=" w-16 h-16 text-4xl text-[#18181b] ">
         <!-- 播放 -->
         <ion-icon name="play-outline"></ion-icon>
       </button>
-      <button class="text-2xl text-[#18181b]">
+      <button class="text-2xl text-[#18181b]" @click="playNextMusic">
         <!-- 右 -->
         <ion-icon name="chevron-forward-outline"></ion-icon>
       </button>
@@ -87,12 +91,7 @@ import { useSongStore } from "@/stores/song.js";
 // const props = defineProps({
 //   musicPlaying:Boolean
 // });
-
-const emit = defineEmits(['showMusicPlayer']);
-
-function showPlayer(){
-  emit('showMusicPlayer')
-}
+const emit = defineEmits(['hiddenMusicPlayer']);
 const lyric = [
   { time: "00:00.00", span: "枫 - 周杰伦 (Jay Chou)" },
   { time: "00:03.79", span: "词：弹头（宋健彰）" },
@@ -159,7 +158,30 @@ const lyric = [
   { time: "04:18.64", span: "让爱渗透了地面" },
   { time: "04:22.19", span: "我要的只是你在我身边" },
 ];
-
+//播放下一首歌
+const playNextMusic = () => {
+  let tempIndex = null;
+  let musicListLength = useSongStore().songsList.length;
+  let musicIndex = useSongStore().music.musicIndex;
+  if (musicIndex + 1 >= musicListLength) {
+    tempIndex = 0;
+  } else {
+    tempIndex = musicIndex + 1;
+  }
+  useSongStore().audioHook(useSongStore().songsList[tempIndex].name, tempIndex);
+};
+//播放上一首歌
+const playPreviousMusic = () => {
+  let tempIndex = null;
+  let musicListLength = useSongStore().songsList.length;
+  let musicIndex = useSongStore().music.musicIndex;
+  if (musicIndex - 1 < 0) {
+    tempIndex = musicListLength - 1;
+  } else {
+    tempIndex = musicIndex - 1;
+  }
+  useSongStore().audioHook(useSongStore().songsList[tempIndex].name, tempIndex);
+}
 </script>
 
 <style scoped>

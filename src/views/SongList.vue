@@ -95,5 +95,6 @@ const songStore = useSongStore();
         {{ song.name.replace(".mp3", "") }}
       </span>
     </div>
+
   </div>
 </template>
