@@ -37,7 +37,7 @@ let showMenu = ref(false);
         </button>
       </div>
 
-      <div class="flex items-center" >
+      <div class="hidden flex items-center" >
         <div class="relative">
           <button class="mt-1" @click="showMenu = !showMenu">
             <img class="rounded-full" src="/public/artist/img/1.webp" width="27" alt="" />
