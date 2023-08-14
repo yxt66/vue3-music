@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-plus"></script>
+    <title>Element Plus demo</title>
+</head>
+
+<body>
+    <div id="app">
+        <el-button class="w-10 h-10 overflow-hidden">{{ message }}</el-button>
+        <el-button>123123</el-button>
+        <el-button text @click="dialogVisible = true">
+            click to open the Dialog
+        </el-button>
+
+        <el-dialog v-model="dialogVisible" title="Tips" width="30%" :before-close="handleClose">
+            <span>This is a message</span>
+            <template #footer>
+                <span class="dialog-footer">
+                    <el-button @click="dialogVisible = false">Cancel</el-button>
+                    <el-button type="primary" @click="dialogVisible = false">
+                        Confirm
+                    </el-button>
+                </span>
+            </template>
+        </el-dialog>
+    </div>
+    <script>
+        const App = {
+            data() {
+                return {
+                    message: "Hello Element Plus",
+                };
+            },
+        };
+        const app = Vue.createApp(App);
+        app.use(ElementPlus);
+        app.mount("#app");
+        const dialogVisible = ref(false)
+
+        const handleClose = (()=> void) => {
+            ElMessageBox.confirm('Are you sure to close this dialog?')
+                .then(() => {
+                    done()
+                })
+                .catch(() => {
+                    // catch error
+                })
+        }
+    </script>
+</body>
+
+</html>

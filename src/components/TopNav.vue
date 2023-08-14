@@ -6,6 +6,7 @@ const isDark = useDark();
 console.log(isDark.value);
 const toggleDark = useToggle(isDark);
 let showMenu = ref(false);
+
 </script>
 <template>
   <!-- nav -->
@@ -15,23 +16,12 @@ let showMenu = ref(false);
     class="dark:border-none z-30 fixed border-b w-full md:w-[80%] h-[55px] max-w-[1100px] rounded-t-lg p-6 flex items-center"
   >
     <!-- logo -->
-    <div class="w-full flex items-center gap-3" @click="$router.push('/home')">
-      <img width="25" src="../assets/vite.svg" alt="" />
-      <span class="hidden md:inline-block text-[14px]">Tao Music</span>
+    <div class="w-[20%] flex items-center justify-center  gap-3" @click="$router.push('/home')">
+      <img width="25" height="25" src="../assets/vite.svg" alt="" />
+      <span class="hidden lg:inline-block text-sm">Tao Music</span>
     </div>
     <!-- search -->
-    <div
-      class="hidden w-full md:flex items-center border dark:border-none max-w-[380px] rounded-full"
-    >
-      <input
-        type="text"
-        class="w-full pl-3 bg-transparent focus:outline-none text-[15px] "
-        placeholder="Search..."
-      />
-      <div class="flex p-1">
-        <ion-icon name="search-outline"></ion-icon>
-      </div>
-    </div>
+
     <!-- nav-right -->
     <div class="w-full flex items-center justify-end gap-3">
       <!-- 黑暗模式 -->
@@ -54,12 +44,7 @@ let showMenu = ref(false);
             class="stroke-gray-950"
           ></path>
         </svg>
-        <svg
-        v-else
-          viewBox="0 0 24 24"
-          fill="none"
-          class="w-6 h-6"
-        >
+        <svg v-else viewBox="0 0 24 24" fill="none" class="w-6 h-6">
           <path
             fill-rule="evenodd"
             clip-rule="evenodd"
@@ -78,9 +63,9 @@ let showMenu = ref(false);
           ></path>
         </svg>
       </div>
-      <div class="flex items-center">
+      <div class="flex items-center"> 
         <button
-          class="flex items-center  border-none bg-gradient-to-r from-purple-500 to-pink-500 text-white border rounded-md px-2 py-[5px]"
+          class="flex items-center border-none bg-gradient-to-r from-purple-500 to-pink-500 text-white border rounded-md px-2 py-[5px]"
         >
           <span class="mx-4 font-medium text-[12px]">登录</span>
         </button>
