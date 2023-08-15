@@ -1,23 +1,24 @@
 
 import axios from 'axios';
 import { defineStore } from 'pinia';
+import songs from "../../public/artist/songs/songs.json";
 
-let songs = [
-  {name:"Love Story - Taylor Swift.mp3"},
-  {name:"You Belong With Me - Taylor Swift.mp3"},
-  { name: "Letting Go - 蔡健雅.mp3", favourite: true },
-  { name: "Music灰姑娘 - 梁咏琪.mp3", favourite: true },
-  { name: "人世间-电视剧《人世间》主题曲 - 雷佳.mp3" },
-  { name: "光字片-《人世间》歌曲 - 周深.mp3" },
-  { name: "如愿 - 王菲.mp3" },
-  { name: "旺仔小乔 - 樱花树下的约定（完整版）.mp3" },
-  { name: "是妈妈是女儿 - 黄绮珊,希林娜依高.mp3", favourite: true },
-  { name: "桃花诺 - G.E.M.邓紫棋.mp3" },
-  { name: "等你下课(with 杨瑞代) - 周杰伦,周杰伦.mp3", favourite: true },
-  { name: "路过人间 - 郁可唯.mp3", favourite: true },
-  { name: "飘雪(Live) - 梁玉莹.mp3" },
-  { name: "飞花(Live) - 李克勤,梁玉莹.mp3" },
-];
+// let songs = [
+//   { name: "Love Story - Taylor Swift.mp3" },
+//   { name: "You Belong With Me - Taylor Swift.mp3" },
+//   { name: "Letting Go - 蔡健雅.mp3", favourite: true },
+//   { name: "Music灰姑娘 - 梁咏琪.mp3", favourite: true },
+//   { name: "人世间-电视剧《人世间》主题曲 - 雷佳.mp3" },
+//   { name: "光字片-《人世间》歌曲 - 周深.mp3" },
+//   { name: "如愿 - 王菲.mp3" },
+//   { name: "旺仔小乔 - 樱花树下的约定（完整版）.mp3" },
+//   { name: "是妈妈是女儿 - 黄绮珊,希林娜依高.mp3", favourite: true },
+//   { name: "桃花诺 - G.E.M.邓紫棋.mp3" },
+//   { name: "等你下课(with 杨瑞代) - 周杰伦,周杰伦.mp3", favourite: true },
+//   { name: "路过人间 - 郁可唯.mp3", favourite: true },
+//   { name: "飘雪(Live) - 梁玉莹.mp3" },
+//   { name: "飞花(Live) - 李克勤,梁玉莹.mp3" },
+// ];
 export const useSongStore = defineStore('song', {
   state: () => ({
     songsList: [],

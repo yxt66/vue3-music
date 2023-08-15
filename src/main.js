@@ -6,6 +6,9 @@ import { createPinia } from 'pinia'
 import Slider from './components/Slider.vue';
 
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
+
+
+
 const pinia  = createPinia();
 pinia.use(piniaPluginPersistedstate);
 
